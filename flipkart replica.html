@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipkart Replica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f6;
+        }
+        .navbar {
+            background-color: #2874f0; 
+            color: white;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-main {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        .logo-sub span {
+            color: #ffe500;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 8px 10px;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            border: none;
+            background-color: white;
+            color: #2874f0;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .nav-links a,
+        .nav-links button {
+            color: white;
+            text-decoration: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+         .nav-links .login-btn {
+            background-color: white;
+            color: #2874f0;
+            padding: 4px 18px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+        .category-bar {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 40px;
+            font-size: 13px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .category-bar div {
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .category-bar div:hover {
+            color: #2874f0;
+        }
+
+        .banner {
+            background: white;
+            margin: 12px 8px;
+            height: 220px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 24px;
+            font-weight: 600;
+            background-image: url(https://images-eu.ssl-images-amazon.com/images/G/31/IMG25/Home/2025/BAU/GW/Hero/Dec/Mega_home_sale_BAU_PC_-_Trendy_showpieces._CB776559147_.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        
+        .section {
+            background-color: white;
+            margin: 12px 8px;
+            border-radius: 2px;
+            padding: 12px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: #2874f0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .product-row {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+        }
+
+        .product-card {
+            min-width: 160px;
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .product-image {
+            height: 120px;
+            margin-bottom: 8px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-price {
+            color: #388e3c;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .product-tag {
+            color: #878787;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #172337;
+            color: #fff;
+            padding: 20px 40px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        footer .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        footer h4 {
+            font-size: 12px;
+            color: #878787;
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .copyright {
+            border-top: 1px solid #454d5e;
+            padding-top: 10px;
+            font-size: 12px;
+            text-align: center;
+            color: #878787;
+        }
+
+        /* Basic responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .category-bar {
+                overflow-x: auto;
+                justify-content: flex-start;
+                gap: 16px;
+                padding: 10px 16px;
+            }
+            .section {
+                margin: 8px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo-area">
+            <div class="logo-main">Flipkart</div>
+            <div class="logo-sub">Explore <span>Plus</span></div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search for products, brands and more">
+            <button>🔍</button>
+        </div>
+
+        <div class="nav-links">
+            <button class="login-btn">Login</button></a>
+            <a href="#">Cart</a>
+        </div>
+    </div>
+
+    <div class="category-bar">
+        <div>Top Offers</div>
+        <div>Mobiles</div>
+        <div>Fashion</div>
+        <div>Electronics</div>
+        <div>Home</div>
+        <div>Beauty & Toys</div>
+        <div>Appliances</div>
+     <div>Grocery</div>
+    </div>
+
+    <div class="banner">
+     </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">Best of Electronics</div>
+            <div class="view-all">VIEW ALL</div>
+        </div>
+        <div class="product-row">
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/613QG2pV3iL._AC_UY436_QL65_.jpg); height: 120px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Smartphone</div>
+                <div class="product-price">₹35,999</div>
+                <div class="product-tag">Top Rated</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/61ttOStDEqL._AC_UY436_QL65_.jpg); height: 120px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Headphones</div>
+                <div class="product-price">₹1,299</div>
+                <div class="product-tag">Best Seller</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/71IGrF1UHTL._AC_UY436_QL65_.jpg); height: 120px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Smartwatch</div>
+                <div class="product-price">₹1,999</div>
+                <div class="product-tag">Special Price</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/41Z2YM3VgWL._AC_UY436_QL65_.jpg); height: 150px; width: 50px; background-size:cover;"></div>
+                <div class="product-name">Pendrive</div>
+                <div class="product-price">₹1,999</div>
+                <div class="product-tag">Hot Deal</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">Fashion Deals of the Day</div>
+            <div class="view-all">VIEW ALL</div>
+        </div>
+        <div class="product-row">
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/713n+TxyfCL._AC_UL640_QL65_.jpg); height: 150px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Men's T-Shirts</div>
+                <div class="product-price">From ₹299</div>
+                <div class="product-tag">Upto 60% Off</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/614DQ6pQR2L._AC_UL640_QL65_.jpg); height: 150px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Women's Kurtas</div>
+                <div class="product-price">From ₹499</div>
+                <div class="product-tag">New Range</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/71HMX3XtQXL._AC_UL640_QL65_.jpg); height: 150px;; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Watches</div>
+                <div class="product-price">From ₹699</div>
+                <div class="product-tag">Great Prices</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image:url(https://m.media-amazon.com/images/I/61gF14-MtDL._AC_UL640_QL65_.jpg); height: 150px; width: 100px; background-size:cover;"></div>
+                <div class="product-name">Shoes</div>
+                <div class="product-price">From ₹899</div>
+                <div class="product-tag">Grab Now</div>
+            </div>
+        </div>
+    </div>
+
+    <
+    <footer>
+        <div class="footer-top">
+            <div>
+                <h4>ABOUT</h4>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Flipkart Stories</a>
+            </div>
+            <div>
+                <h4>HELP</h4>
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Cancellation & Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div>
+                <h4>POLICY</h4>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div>
+                <h4>SOCIAL</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 Flipkart.com All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
